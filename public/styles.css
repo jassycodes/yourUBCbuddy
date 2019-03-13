@@ -129,6 +129,31 @@ h1{
 	background-color: #0055B7;
 }
 
+
+.formButtonSmall{
+	padding-left: 8px; 
+	padding-right: 8px; 
+	margin-top: 10px; 
+	background-color: #002859; 
+	color: white; 
+	font-weight: bold; 
+	/*border-color: #484848; */
+	border-color: black;
+	border-width: 1px;
+}
+
+.redBG{
+	background-color: maroon;
+}
+
+.redBG:hover{
+	background-color: #B22222;
+}
+
+.redText{
+	color: red;
+}
+
 .webAppFeature{
   transition: box-shadow .3s;
   width: 300px;
@@ -143,6 +168,10 @@ h1{
   display: inline-block”;
   vertical-align: middle;
   position: relative;
+}
+
+.fontWeightBold{
+	font-weight: bold;
 }
 
 .webAppFeatureText{

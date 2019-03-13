@@ -22,7 +22,8 @@ router.post('/login', function (req, res, next) {
 		console.log("req.cookies.currentUser: ", req.cookies.currentUser);
 		res.cookie('currentUser', user.username);
 		console.log("req.cookies.currentUser: ", req.cookies.currentUser);
-		res.redirect('/user/dashboard');
+		res.redirect('/user/enter-my-classes');
+		// res.redirect('/user/dashboard');
 		// res.render('user', {currentUser: user.username});
 		// res.render('login',{loginError: "success"});
 	  } 
@@ -41,6 +42,10 @@ router.post('/login', function (req, res, next) {
 	res.send(500, err);
   });
 
+});
+
+router.get('/enter-my-classes', function(req, res, next) {
+  res.render('enterMyClasses');
 });
 
 router.get('/logout', function(req, res, next) {
