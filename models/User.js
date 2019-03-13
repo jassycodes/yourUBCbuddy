@@ -43,7 +43,7 @@ module.exports = {
         console.log(user);
         //const queryString = 'INSERT INTO Users(username, password) VALUES (' + user.username + ', ' + user.pword + ')';
         return new Promise((resolve, reject) => {
-            const queryString = "INSERT INTO Users(username,password) VALUES ('" + user.username + "',  '" + user.pword + "')";
+            const queryString = "INSERT INTO Users(username,password) VALUES ('" + user.username + "',  '" + user.pword + "', '" + user.fname + "', '" + user.lname + "' )";
             //  const queryString = 'INSERT INTO Users(username, password) VALUES ('" + user.username + "', '" + user.pword + "')';
             db.query(queryString, (err, res) => {
                 // console.log(err, res, "hello");
@@ -393,7 +393,7 @@ module.exports = {
         var filter = [query.subject, query.course_code];
         return new Promise((resolve, reject) => {
             // INSERT INTO ClassFeedback(sender_username, subject_code, course_number, feedback) VALUES("jassycodes","CPSC", "310", "it's a great class!");
-            const queryString = const queryString = "INSERT INTO ClassFeedback(sender_username, subject_code, course_number, feedback, ,DATESTAMP,TIMESTAMP) VALUES ( '" + query.username + "', '" + query.course_code + "', '" + feedback + "', '" + formattedDate + "', '" + formattedTime + "')";
+            // const queryString = const queryString = "INSERT INTO ClassFeedback(sender_username, subject_code, course_number, feedback, ,DATESTAMP,TIMESTAMP) VALUES ( '" + query.username + "', '" + query.course_code + "', '" + feedback + "', '" + formattedDate + "', '" + formattedTime + "')";
 
             db.query(queryString, (err, res) => {
                 // console.log(res, "loadAllMessages res");
