@@ -1,0 +1,31 @@
+{
+  "name": "ubc_rideshare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jassycodes/ubc_rideshare.git"
+  },
+  "author": "jasmine bayani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jassycodes/ubc_rideshare/issues"
+  },
+  "homepage": "https://github.com/jassycodes/ubc_rideshare#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "marvel-comics-api": "^1.3.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "node-datetime": "^2.1.2",
+    "path": "^0.12.7"
+  }
+}

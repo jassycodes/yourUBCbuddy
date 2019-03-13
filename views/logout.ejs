@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>UBC RIDESHARE - LOG OUT PAGE</title>
+      <meta name="description" content="UBC RIDESHARE">
+      <meta name="Jasmine" content="SitePoint">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+      <!--BOOTSTRAP-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/styles.css" />
+   </head>
+   <body class = "container-fluid">
+   <!-- menu div -->
+   <div id="menu" class="navbar navbar-default fixed-top">
+         <div id="menu-contents" class="container-fluid">
+            <a href="/" class="menu-item">HOME</a>
+            <a href="" class="menu-item">DASHBOARD</a>
+            <a href="/user/login" class="menu-item">LOG IN</a> 
+            <a href=#mainContent class="menu-item">^</a> 
+        </div>
+   </div>
+   <!-- menu div -->
+   <!--main content -->
+   <div id="mainContent">
+      <div class="formDiv container-fluid" id="logoutFormDiv" align="center">
+        <h1 class="formHeading">LOG OUT</h1>
+            <form method='POST' action="/user/logout">
+               <div><input name="fname" class="formContent" placeholder="First Name"></div>
+               <div><input name="lname" class="formContent" placeholder="Last Name"></div>
+               <div><input name="username" class="formContent" placeholder="Username"></div>
+               <div><input name="pword" class="formContent" placeholder="Password"></div>
+               <div><input name="confirm-pword" class="formContent" placeholder="Confirm Password"></div>
+               <input class="formButton" type="submit" value="Create Account">
+            </form>
+      </div>
+      <!-- DIV registerForm -->
+   </div>
+   <!--main content -->
+   </body>
+   <!--container -->
+</html>

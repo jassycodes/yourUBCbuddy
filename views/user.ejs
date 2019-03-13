@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+			<meta charset="utf-8">
+			<title>UBC RIDESHARE - USER DASHBOARD</title>
+			<meta name="description" content="UBC RIDESHARE">
+			<meta name="Jasmine" content="SitePoint">
+			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+			<!--BOOTSTRAP-->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+				<link rel="stylesheet" type="text/css" href="/styles.css" />
+	 </head>
+	 <body class = "container-fluid">
+	 <!-- menu div -->
+	 <div id="menu" class="navbar navbar-default fixed-top">
+				 <div id="menu-contents" class="container-fluid">
+						<a href="/" class="menu-item">HOME</a>
+						<a href="/user/dashboard" class="menu-item">DASHBOARD</a>
+						<a href="/user/login" class="menu-item">LOG OUT</a> 
+						<a href=#mainContent class="menu-item">^</a> 
+				</div>
+	 </div>
+	 <!-- menu div -->
+	 <!--main content -->
+	 <div id="mainContent">
+			<div id="homepage_form" style="margin-top: 200px;">
+
+					<form method='POST' action="/sendtochatbox" align=center id="chatform" role='form'>
+<!--             YOUR USERNAME: <input name="username" style=" padding: 10px; padding-left: 5%; padding-right: 5%; border-color: darkgrey">
+						<br> -->
+						<input name="message" style=" padding: 10px; padding-left: 5%; padding-right: 5%; border-color: darkgrey">
+						<button id="send" style=" padding: 10px; margin-top: 10px; background-color: #349fbf; color: white; font-weight: bold; border-color: white; border-width: 3px;">SEND</button>
+				 </form>
+
+				 <form method='POST' action="/clearmessages" align=center id="deleteMsgForm" role='form'>
+				 <button id="deleteMessages" style=" padding: 10px; margin-top: 10px; background-color: #510000; color: white; font-weight: bold; border-color: white; border-width: 3px;">DELETE MESSAGES</button>
+				</form>
+
+			 <div id=status align="center">        </div>
+			 <div id=themessage>        </div>
+			 <div id=messages style="margin-top: 10px; padding: 5%; background-color: white; border-color: black !important; border-style: solid;"></div>
+						 <div id=random-string>        </div>
+		 <div id=top_10_titles>        </div>
+			</div>
+	 </div>
+	 <!--main content -->
+	 </body>
+	 <!--container -->
+</html>
