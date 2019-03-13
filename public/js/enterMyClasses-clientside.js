@@ -1,33 +1,18 @@
-// $(document).ready(function(){
-
-// 	// var scntDiv = $('#p_scents');
-//     var i = $('#schoolClasses').size();
-
-// 	$('#addAClass').click(function () {
-// 		// alert("add a class");
-// 		// $('#schoolClasses').append('<div id="schoolClasses"><input name="course_code" class="formContentSmaller" placeholder="CPSC"> <input name="subj_code" class="formContentSmaller" placeholder="310"><input name="section_code" class="formContentSmaller" placeholder="005"><button id="removeSchoolClass" type="button" style="margin-left: 10px;">Remove</button></div>');
-// 		// $('#schoolClasses').append('<div id="schoolClasses"><input name="course_code" class="formContentSmaller" placeholder="CPSC"> <input name="subj_code" class="formContentSmaller" placeholder="310"><input name="section_code" class="formContentSmaller" placeholder="005">');
-// 		i++;
-// 		$('#schoolClasses').append('<div id="schoolClasses"><input class="formContentSmaller" placeholder="CPSC" id="myClass' + i +'"> <input name="subj_code" class="formContentSmaller" placeholder="310"><input name="section_code" class="formContentSmaller" placeholder="005">');
-// 		$('#schoolClasses').append('<button id="removeSchoolClass' + i +'" type="button" style="margin-left: 10px;">Remove</button></div>');
-// 		// <button id="removeSchoolClass" type="button" style="margin-left: 10px;">Remove</button></div>');
-// 		$('"#myClass'+i+ '"').attr('name', 'course_code');
-// 		console.log(i);
-// 		// return false;
-// 	});
-
-// 	$('"#removeSchoolClass'+i+'"').click(function () {
-// 		alert('hi');
-// 		// $('"#myClass'+i+ '"').remove();
-// 	});
-
-// });
-
 $(document).ready(function() {
 
 	var max_fields      = 6; //maximum input boxes allowed
 	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
 	var add_button      = $(".add_field_button"); //Add button ID
+	// var myObject = new Object();
+	// var myObject.subj_codeLIST;
+	// var myObject.course_codeLIST;
+	// var myObject.section_codeLIST;
+	var subj_codeLIST;
+	var subj_codeARR = [];
+	var course_codeLIST;
+	var course_codeARR = [];
+	var section_codeLIST;
+	var section_codeARR = [];
 	// var i = $('#schoolClasses').size();
 	// var size = $(wrapper).size();
 	var size = 1; //initlal text box count
@@ -61,16 +46,87 @@ $(document).ready(function() {
 	})
 
 	$('#save').click(function (){
-		var subj_codeLIST = $("input[name='subj_code[]']")
-              .map(function(){return $(this).val();}).get();
-		var course_codeLIST = $("input[name='course_code[]']")
-              .map(function(){return $(this).val();}).get();
-		var section_codeLIST = $("input[name='section_code[]']")
-              .map(function(){return $(this).val();}).get();
+		subj_codeLIST = $("input[name='subj_code[]']")
+			  .map(function(){return $(this).val();}).get();
+		course_codeLIST = $("input[name='course_code[]']")
+			  .map(function(){return $(this).val();}).get();
+		section_codeLIST = $("input[name='section_code[]']")
+			  .map(function(){return $(this).val();}).get();
 
 		// alert(values);
+	});
+	$('#show').click(function (){
 		console.log("subj_codeLIST", subj_codeLIST);
 		console.log("course_codeLIST", course_codeLIST);
 		console.log("section_codeLIST", section_codeLIST);
+		console.log("type of subj_codeLIST", typeof(subj_codeLIST));
+
+		$.each(subj_codeLIST, function (index, value) 
+		{
+			console.log(value);
+			subj_codeARR.push(value);
+			// Will stop running after "three"
+		// return (value !== 'three');
+		});
 	});
+
+
+	$('#submit').click(function (){
+
+		// for ( var i = 0, l = subj_codeLIST.length; i < l; i++ ) {
+  //   		console.log("subj_codeLIST[i]" + i , subj_codeLIST[i]);
+		// }
+
+		function createJSON() {
+			jsonObj = [];
+			// $("input[class=email]").each(function() {
+
+				// var id = $(this).attr("title");
+				// var email = $(this).val();
+			for ( var i = 0, l = subj_codeLIST.length; i < l; i++ ) {
+				item = {}
+				item["subjectCode"] = subj_codeLIST[i];
+				item["courseCode"] = course_codeLIST[i];
+				item["sectionCode"] = section_codeLIST[i];
+
+				jsonObj.push(item);
+			}
+			// });
+
+			console.log(jsonObj);
+			return jsonObj;
+		}
+
+		var classesData = createJSON();
+		console.log("classesData:", typeof(classesData));
+
+		// var json = JSON.stringify(subj_codeLIST);
+		 // data: {subjectCodes: subj_codeLIST, courseCodes: course_codeLIST, sectionCodes: section_codeLIST},
+		// $.ajax({
+		// 	url: '/user/saveClasses', 
+		// 	type: 'POST', 
+		// 	dataType: 'application/json',
+		// 	// data: []
+		// 	data: JSON.stringify({number:1}),
+		// 	// data: {subjectCodes: subj_codeARR},
+		// // contentType: "application/json; charset=utf-8",
+		// // dataType: jsonData,
+		//  // data: JSON.stringify({subjectCodes: subj_codeLIST, courseCodes: course_codeLIST, sectionCodes: section_codeLIST}),
+		// 	// data: {subjectCodes: myObject.subj_codeLIST, courseCodes: myObject.course_codeLIST, sectionCodes: myObject.section_codeLIST},
+		// 	success: function(response) {
+		// 		console.log(response);
+		// 	},
+		// 	error: function(error) {
+		// 		console.log(error);
+		// 	}
+		// })
+			$.ajax({
+	    url: '/user/saveClasses', 
+	    type: 'POST', 
+	    contentType: 'application/json', 
+	    // data: JSON.stringify({number:1})
+	    data: JSON.stringify(classesData)
+		})
+	});
+
 });

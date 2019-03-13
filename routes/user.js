@@ -265,6 +265,21 @@ router.post('/load-class-feedback', function(req, res, next) {
 
 });
 
+router.post('/saveClasses', function(req, res, next) {
+	console.log('/saveClasses');
+	var body = req.body;
+	// var parse = JSON.parse(body);
+
+	console.log("body: ",body);
+
+			for ( var i = 0, l = body.length; i < l; i++ ) {
+				console.log(i);
+				console.log("body.subjectCode: ", body[i].subjectCode);
+				console.log("body.courseCode: ", body[i].courseCode);
+				console.log("body.sectionCode: ", body[i].sectionCode);
+			}
+});
+
 // router.post('/get-class-feedback', function(req, res, next) {
 // 	console.log("user.js -> /get-class-feedback");
 // 	console.log(req.body.courseNumH4);
