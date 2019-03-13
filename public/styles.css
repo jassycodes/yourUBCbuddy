@@ -154,6 +154,21 @@ h1{
 	color: red;
 }
 
+.darkGreyBG{
+	background-color: #202020;
+}
+
+.whiteText{
+	color: white;
+}
+
+.greenBG{
+	background-color: #003300;
+}
+.greenBG:hover{
+	background-color: green;
+}
+
 .webAppFeature{
   transition: box-shadow .3s;
   width: 300px;

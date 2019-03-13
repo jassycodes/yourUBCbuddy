@@ -35,38 +35,16 @@
 <!-- 			    <div><input type="text" name="subj_code" class="formContentSmaller" value="CPSC"/><input type="text" name="courseNum[]" class="formContentSmaller" placeholder="Course Code"/><input type="text" name="section_code[]" class="formContentSmaller" placeholder="Section Code"/></div> -->
 				<!-- Ex: SUBJECT CODE: CPSC COURSE CODE: 310 SECTION CODE: 101 -->
 				<div class="input_fields_wrap">
-    <div><input type="text" name="subj_code" class="formContentSmaller" placeholder="Subject Code"/><input type="text" name="courseNum[]" class="formContentSmaller" placeholder="Course Code"/><input type="text" name="section_code[]" class="formContentSmaller" placeholder="Section Code"/></div>
+    <div><input type="text" name="subj_code[]" class="formContentSmaller" placeholder="Subject Code"/><input type="text" name="course_code[]" class="formContentSmaller" placeholder="Course Code"/><input type="text" name="section_code[]" class="formContentSmaller" placeholder="Section Code"/> <button type="button" class="formButtonSmall darkGreyBG whiteText">You need to enter at least 1 class</button></div>
 
 			</div>
 			<!-- DIV saveClassesDiv  -->
 			    <button class="add_field_button formButtonWide">Add More Fields</button>
 
 			    			<div id="errorMsg"></div>
-
-
-			 <!-- 						<form method='POST' action="/user/submitClasses" id="userClassesForm">
-							 <div>
-							 <label for="sy-season">Select school year:</label>
-							 <select class="formContent form control" name="sy-season" id="sy-season">
-								<option>2018</option>
-							
-							  </select>
-							<label for="sy-season">Select your term season:</label>
-							  <select class="formContent form control" name="sy-season" id="sy-season">
-								<option>WINTER</option>
-			
-							  </select>
-							 </div>
-							 <h3>Enter your classes:</h3>
-				
-							<div id="schoolClasses"><input name="course_code" class="formContentSmaller" placeholder="CPSC" id="myClass1"> <input name="subj_code" class="formContentSmaller" placeholder="310"><input name="section_code" class="formContentSmaller" placeholder="005">
-							</div>
- 	
- 							<button id="addAClass" class="formButton" style="background-color: green;" type="button">Add another class</button>
- 							<br>
-							 <input class="formButtonWide" type="submit" value="SAVE MY CLASSES">
-
-						</form> -->
+			    <br>
+			    <br>
+			    <button id="save" class="formButtonWide greenBG whiteText float-right">Save</button>
 	 </div>
 	 <!--main content -->
 	 </body>

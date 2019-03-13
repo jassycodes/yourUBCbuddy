@@ -41,7 +41,7 @@ $(document).ready(function() {
 			size++; //text box increment
 			// $(wrapper).append('<div> ' + x + '<input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
 			// $(wrapper).append('<div> ' + x + '. <input type="text" name="subj_code" class="formContentSmaller"/><input type="text" name="courseNum[]" class="formContentSmaller"/><input type="text" name="section_code[]" class="formContentSmaller"/> <button type="button" class="remove_field formButtonSmall redBG">Remove</button></div>');
-			$(wrapper).append('<div><input type="text" name="subj_code" class="formContentSmaller" placeholder="Subject Code"/><input type="text" name="courseNum[]" class="formContentSmaller" placeholder="Course Code"/><input type="text" name="section_code[]" class="formContentSmaller" placeholder="Section Code"/> <button type="button" class="remove_field formButtonSmall redBG">Remove</button></div>');
+			$(wrapper).append('<div><input type="text" name="subj_code[]" class="formContentSmaller" placeholder="Subject Code"/><input type="text" name="course_code[]" class="formContentSmaller" placeholder="Course Code"/><input type="text" name="section_code[]" class="formContentSmaller" placeholder="Section Code"/> <button type="button" class="remove_field formButtonSmall redBG">Remove</button></div>');
 		}
 
 		console.log("size", size);
@@ -59,4 +59,18 @@ $(document).ready(function() {
 			$("#errorMsg").hide();
 		}
 	})
+
+	$('#save').click(function (){
+		var subj_codeLIST = $("input[name='subj_code[]']")
+              .map(function(){return $(this).val();}).get();
+		var course_codeLIST = $("input[name='course_code[]']")
+              .map(function(){return $(this).val();}).get();
+		var section_codeLIST = $("input[name='section_code[]']")
+              .map(function(){return $(this).val();}).get();
+
+		// alert(values);
+		console.log("subj_codeLIST", subj_codeLIST);
+		console.log("course_codeLIST", course_codeLIST);
+		console.log("section_codeLIST", section_codeLIST);
+	});
 });
