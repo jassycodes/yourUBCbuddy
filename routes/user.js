@@ -79,7 +79,7 @@ router.post('/register', function(req, res, next) {
 				console.log("Successfully created an account!");
 
 				console.log("req.cookies.currentUser: ", req.cookies.currentUser);
-				res.cookie('currentUser', user.username);
+				res.cookie('currentUser', req.body.username);
 				console.log("req.cookies.currentUser: ", req.cookies.currentUser);
 
 				res.redirect('/user/enter-my-classes');
@@ -315,14 +315,28 @@ router.post('/saveClasses', function(req, res, next) {
 	// var parse = JSON.parse(body);
 
 	console.log("body: ",body);
-
+	var currentUser = req.cookies.currentUser;
 			for ( var i = 0, l = body.length; i < l; i++ ) {
 				console.log(i);
 				console.log("body.subjectCode: ", body[i].subjectCode);
 				console.log("body.courseCode: ", body[i].courseCode);
 				console.log("body.sectionCode: ", body[i].sectionCode);
-				
+
+				UserDB.saveClasses(currentUser, body[i]).then((user) => {
+					console.log("user.js -> saveClasses ");
+					console.log("Successfully saveClasses!");
+
+					console.log("req.cookies.currentUser: ", currentUser);
+					res.cookie('currentUser', currentUser);
+					console.log("req.cookies.currentUser: ", currentUser);
+				})
+				.catch((err) => {
+					console.log("found an error", err);
+					res.send(500, err);
+				});
 			}
+	res.send(200);
+	// res.redirect('/user/profile/me');
 });
 
 // router.post('/get-class-feedback', function(req, res, next) {

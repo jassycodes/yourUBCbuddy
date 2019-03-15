@@ -11,7 +11,7 @@ $(document).ready(function(){
 	// 	console.log(i);
 	// 	return false;
 	// });
-	$("#msg").append("<p align='center' class='redText'>Password doesn't match <p>");
+	$("#msg").append("<p align='center' class='redText'>Password doesn't match </p>");
 	$("#msg").hide();
 
 	$('#createAccount').click(function () {

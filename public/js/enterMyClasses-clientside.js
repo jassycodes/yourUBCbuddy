@@ -45,17 +45,20 @@ $(document).ready(function() {
 		}
 	})
 
-	$('#save').click(function (){
+	// $('#save').click(function (){
+	function save(){	
 		subj_codeLIST = $("input[name='subj_code[]']")
 			  .map(function(){return $(this).val();}).get();
 		course_codeLIST = $("input[name='course_code[]']")
 			  .map(function(){return $(this).val();}).get();
 		section_codeLIST = $("input[name='section_code[]']")
 			  .map(function(){return $(this).val();}).get();
-
+	}
 		// alert(values);
-	});
-	$('#show').click(function (){
+	// });
+
+	// $('#show').click(function (){
+	function show(){
 		console.log("subj_codeLIST", subj_codeLIST);
 		console.log("course_codeLIST", course_codeLIST);
 		console.log("section_codeLIST", section_codeLIST);
@@ -68,10 +71,14 @@ $(document).ready(function() {
 			// Will stop running after "three"
 		// return (value !== 'three');
 		});
-	});
+	}
+	// });
 
 
 	$('#submit').click(function (){
+		save();
+		show();
+
 
 		// for ( var i = 0, l = subj_codeLIST.length; i < l; i++ ) {
   //   		console.log("subj_codeLIST[i]" + i , subj_codeLIST[i]);
@@ -100,32 +107,19 @@ $(document).ready(function() {
 		var classesData = createJSON();
 		console.log("classesData:", typeof(classesData));
 
-		// var json = JSON.stringify(subj_codeLIST);
-		 // data: {subjectCodes: subj_codeLIST, courseCodes: course_codeLIST, sectionCodes: section_codeLIST},
-		// $.ajax({
-		// 	url: '/user/saveClasses', 
-		// 	type: 'POST', 
-		// 	dataType: 'application/json',
-		// 	// data: []
-		// 	data: JSON.stringify({number:1}),
-		// 	// data: {subjectCodes: subj_codeARR},
-		// // contentType: "application/json; charset=utf-8",
-		// // dataType: jsonData,
-		//  // data: JSON.stringify({subjectCodes: subj_codeLIST, courseCodes: course_codeLIST, sectionCodes: section_codeLIST}),
-		// 	// data: {subjectCodes: myObject.subj_codeLIST, courseCodes: myObject.course_codeLIST, sectionCodes: myObject.section_codeLIST},
-		// 	success: function(response) {
-		// 		console.log(response);
-		// 	},
-		// 	error: function(error) {
-		// 		console.log(error);
-		// 	}
-		// })
-			$.ajax({
-	    url: '/user/saveClasses', 
-	    type: 'POST', 
-	    contentType: 'application/json', 
-	    // data: JSON.stringify({number:1})
-	    data: JSON.stringify(classesData)
+		$.ajax({
+		    url: '/user/saveClasses', 
+		    type: 'POST', 
+		    contentType: 'application/json', 
+		    // data: JSON.stringify({number:1})
+		    data: JSON.stringify(classesData),
+		    success: function(response){
+		    	console.log(response);
+		    	window.location.replace('http://localhost:9000/user/profile/me');
+		    },
+			error: function(error) {
+				console.log(error);
+			}
 		})
 	});
 

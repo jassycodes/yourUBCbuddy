@@ -68,6 +68,9 @@ CREATE TABLE Enrollments(
   FOREIGN KEY (student_id) REFERENCES USERS(id)
 );
 
+-- ALTER TABLE ENROLLMENTS MODIFY subject_code VARCHAR(50);
+
+
 CREATE TABLE ClassFeedback(
   id INT AUTO_INCREMENT NOT NULL, 
   sender_id INT,
