@@ -22,8 +22,8 @@ router.post('/login', function (req, res, next) {
 		console.log("req.cookies.currentUser: ", req.cookies.currentUser);
 		res.cookie('currentUser', user.username);
 		console.log("req.cookies.currentUser: ", req.cookies.currentUser);
-		res.redirect('/user/enter-my-classes');
-		// res.redirect('/user/dashboard');
+		// res.redirect('/user/enter-my-classes');
+		res.redirect('/user/dashboard');
 		// res.render('user', {currentUser: user.username});
 		// res.render('login',{loginError: "success"});
 	  } 
@@ -54,6 +54,50 @@ router.get('/logout', function(req, res, next) {
 
 router.get('/register', function(req, res, next) {
   res.render('register');
+});
+
+router.post('/register', function(req, res, next) {
+	console.log("/register post")
+	console.log("req.body", req.body);
+	console.log("req.body.fname", req.body.fname);
+	console.log("req.body.lname", req.body.lname);
+	console.log("req.body.username", req.body.username);
+	console.log("req.body.pword", req.body.pword);
+	console.log("req.body.confirm-pword", req.body.confirmPword);
+
+	var pword = req.body.pword;
+	var confirmPword = req.body.confirmPword;
+
+	if(pword == confirmPword){
+
+	  UserDB.findOne(req.body)
+	  .then((user) => {
+	 
+		if (user === false) {
+			UserDB.registerNewUser(req.body).then((user) => {
+				console.log("user.js -> registerNewUser ");
+				console.log("Successfully created an account!");
+
+				console.log("req.cookies.currentUser: ", req.cookies.currentUser);
+				res.cookie('currentUser', user.username);
+				console.log("req.cookies.currentUser: ", req.cookies.currentUser);
+
+				res.redirect('/user/enter-my-classes');
+			});
+		}
+		else{
+			console.log("user already exists");
+			var regStats = "user already exists";
+			res.render('register');
+		}
+	  })
+	  .catch((err) => {
+		console.log("found an error", err);
+		res.send(500, err);
+	  });
+ 
+	}
+
 });
 
 router.get('/dashboard', function(req, res, next) {
@@ -99,11 +143,11 @@ router.get('/profile/getUserEnrollmentInfo', function(req, res, next) {
 // router.get('/getUserProfile', function(req, res, next) {
 //   UserDB.findOne(req.cookies.currentUser)
 //   .then((username) => {
-//   	console.log("req.cookies.currentUser: ", req.cookies.currentUser);
+//      console.log("req.cookies.currentUser: ", req.cookies.currentUser);
 //   })
 //   .catch((err) => {
-// 	console.log("found an error", err);
-// 	res.send(500, err);
+//  console.log("found an error", err);
+//  res.send(500, err);
 //   });
 
 // });
@@ -153,10 +197,10 @@ router.post('/findStudyBuddy', function(req, res, next) {
 			console.log("found an error", err);
 			res.send(500, err);
 		  });
- 	}
- 	else if(subj != "" && courseCode != "" && courseSection == ""){
+	}
+	else if(subj != "" && courseCode != "" && courseSection == ""){
 
- 		  UserDB.findStudyBuddyForAClassFirst2Fields(req.body)
+		  UserDB.findStudyBuddyForAClassFirst2Fields(req.body)
 		  .then((users) => {
 			console.log("user.js -> getUserEnrollmentInfo")
 			// console.log(enrollments);
@@ -174,9 +218,9 @@ router.post('/findStudyBuddy', function(req, res, next) {
 			res.send(500, err);
 		  });
 
- 	}
- 	else if(subj != "" && courseCode != "" && courseSection != ""){
- 		  UserDB.findStudyBuddyForAClassAllFields(req.body)
+	}
+	else if(subj != "" && courseCode != "" && courseSection != ""){
+		  UserDB.findStudyBuddyForAClassAllFields(req.body)
 		  .then((users) => {
 			console.log("user.js -> getUserEnrollmentInfo")
 			// console.log(enrollments);
@@ -193,38 +237,38 @@ router.post('/findStudyBuddy', function(req, res, next) {
 			console.log("found an error", err);
 			res.send(500, err);
 		  });
- 	}
- 	else if(subj == "" && courseCode == "" && courseSection == ""){
+	}
+	else if(subj == "" && courseCode == "" && courseSection == ""){
 			var err = "No filter provided";
 			var usersMatched = "";
 			var responseMsg = err;
 			res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
- 	}
- 	else{
- 		if(subj == "" && (courseCode != "" || courseSection != "")){
- 			var err = "";
- 			if(courseCode != "" && courseSection != ""){
- 				err = "You must fill Subject Code Field first";
- 			}
- 			else if(courseCode != ""){
- 				err = "You must fill in the Subject Code Field first before you fill in the Course Code Field";
- 			}
- 			else if(courseSection != ""){
- 				err = "You must fill in the Subject Code Field first before you fill in the Course Section Field";
- 			}
+	}
+	else{
+		if(subj == "" && (courseCode != "" || courseSection != "")){
+			var err = "";
+			if(courseCode != "" && courseSection != ""){
+				err = "You must fill Subject Code Field first";
+			}
+			else if(courseCode != ""){
+				err = "You must fill in the Subject Code Field first before you fill in the Course Code Field";
+			}
+			else if(courseSection != ""){
+				err = "You must fill in the Subject Code Field first before you fill in the Course Section Field";
+			}
 			var usersMatched = "";
 			var responseMsg = err;
 
- 			res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
- 		}
- 		else if(subj == "" && courseCode == "" && courseSection != ""){
- 			var err = "Nothing entered for Subject Code Field and Course Code Field";
+			res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
+		}
+		else if(subj == "" && courseCode == "" && courseSection != ""){
+			var err = "Nothing entered for Subject Code Field and Course Code Field";
 			var usersMatched = "";
 			var responseMsg = err;
 
- 			res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
- 		}
- 	}
+			res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
+		}
+	}
 
 });
 
@@ -256,7 +300,7 @@ router.post('/load-class-feedback', function(req, res, next) {
 
 			// res.re()
 			// res.render('findastudybuddy', {usersMatched: usersMatched, responseMessage: responseMsg});
-		 	res.render('ubcClassFeedback', {feedbackRes: feedbackObj});
+			res.render('ubcClassFeedback', {feedbackRes: feedbackObj});
 		  })
 		  .catch((err) => {
 			console.log("found an error", err);
@@ -277,27 +321,28 @@ router.post('/saveClasses', function(req, res, next) {
 				console.log("body.subjectCode: ", body[i].subjectCode);
 				console.log("body.courseCode: ", body[i].courseCode);
 				console.log("body.sectionCode: ", body[i].sectionCode);
+				
 			}
 });
 
 // router.post('/get-class-feedback', function(req, res, next) {
-// 	console.log("user.js -> /get-class-feedback");
-// 	console.log(req.body.courseNumH4);
+//  console.log("user.js -> /get-class-feedback");
+//  console.log(req.body.courseNumH4);
 
-// 	var feedbackObj;
+//  var feedbackObj;
 
-// 	 UserDB.loadClassFeedback(req.body)
+//   UserDB.loadClassFeedback(req.body)
 //   .then((feedback) => {
 
-//   	// console.log(feedback);
-//   	feedbackObj = JSON.parse(JSON.stringify(feedback));
-// 	console.log("feedbackObj", feedbackObj);
-// 	res.send(200, feedbackObj);
+//      // console.log(feedback);
+//      feedbackObj = JSON.parse(JSON.stringify(feedback));
+//  console.log("feedbackObj", feedbackObj);
+//  res.send(200, feedbackObj);
  
 //   })
 //   .catch((err) => {
-// 	console.log("found an error", err);
-// 	res.send(500, err);
+//  console.log("found an error", err);
+//  res.send(500, err);
 //   });
 
 //   console.log('getting messages', feedbackObj);

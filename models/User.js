@@ -41,9 +41,10 @@ module.exports = {
     registerNewUser: function(user) {
         console.log("User.js -> registerNewUser");
         console.log(user);
+        
         //const queryString = 'INSERT INTO Users(username, password) VALUES (' + user.username + ', ' + user.pword + ')';
         return new Promise((resolve, reject) => {
-            const queryString = "INSERT INTO Users(username,password) VALUES ('" + user.username + "',  '" + user.pword + "', '" + user.fname + "', '" + user.lname + "' )";
+            const queryString = "INSERT INTO Users(username,fname,lname, password, email) VALUES ('" + user.username + "', '" + user.fname + "', '" + user.lname + "',  '" + user.pword + "',  '" + user.email + "' )";
             //  const queryString = 'INSERT INTO Users(username, password) VALUES ('" + user.username + "', '" + user.pword + "')';
             db.query(queryString, (err, res) => {
                 // console.log(err, res, "hello");

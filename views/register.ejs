@@ -31,7 +31,8 @@
 	 <div id="mainContent">
 			<div class="formDiv container-fluid" id="registerFormDiv">
 				<h1 class="formHeading">CREATE YOUR ACCOUNT</h1>
-						<form method='POST' action="/user/register" id="registerForm">
+
+						<form method='POST' action="/user/register" id="registerForm" align="center">
 							<div>
 								 <b><label for="fname">First Name: </label></b><br>
 								 <!-- <b>First Name:</b><br> -->
@@ -51,25 +52,31 @@
 							 	<b><label for="email">Email: </label></b><br>
 							 	<input name="email" class="formContent" placeholder="student@ubc.ca"></div>
 							 <div>
-							 	<label for="pword">Password: </label>
-							 	<input name="pword" class="formContent" placeholder="your assword">
-							 	<label for="confirm-pword">Confirm Password: </label>
-							 	<input name="confirm-pword" class="formContent" placeholder="confirm your password">
+							 	<b><label for="pword">Password: </label> </b><br>
+							 	<input name="pword" class="formContent" placeholder="your password">
 							 </div>
+							 <div>
+							 	  <b> <label for="confirmPword">Confirm Password: </label> </b><br>
+							 	<input name="confirmPword" class="formContent" placeholder="confirm your password">
+							 </div>
+
+
 							 <!-- 							 	<input name="school-year" style="	margin-top: 10px !important; margin-bottom: 10px !important; padding: 10px;" placeholder="2018"> -->
 							 <!-- <div><input name="sy-season" class="formContent" placeholder="WINTER"></div> -->
-							 <div>
+							
+<!-- 							 <div>
 							 <label for="sy-season">Select school year:</label>
 							 <select class="formContent form control" name="sy-season" id="sy-season">
 								<option>2018</option>
-								<!-- <option>2019</option> -->
+								<option>2019</option>
 							  </select>
 							<label for="sy-season">Select your term season:</label>
 							  <select class="formContent form control" name="sy-season" id="sy-season">
 								<option>WINTER</option>
-								<!-- <option>SUMMER</option> -->
+								<option>SUMMER</option>
 							  </select>
-							 </div>
+							 </div> -->
+
 							 <!-- <h3>Enter your classes:</h3> -->
 							<!-- <div id="schoolClassesDiv"> -->
 <!-- 							<div id="schoolClasses"><input name="course_code" class="formContentSmaller" placeholder="CPSC"> <input name="subj_code" class="formContentSmaller" placeholder="310"><input name="section_code" class="formContentSmaller" placeholder="005">
@@ -90,9 +97,13 @@
  -->	
  							<!-- <button id="addAClass" class="formButton" style="background-color: green;" type="button">Add another class</button> -->
  							<br>
-							 <input class="formButtonWide float-right" type="submit" value="Create Account">
+ 							<div id="msg"></div>
+ 							<br>
+							 <input class="formButtonWide float-center" type="submit" value="Create Account" id="createAccount">
 
 						</form>
+
+
 			</div>
 			<!-- DIV registerForm -->
 	 </div>
